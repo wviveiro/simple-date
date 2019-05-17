@@ -1,0 +1,24 @@
+{
+  "name": "simple-date",
+  "version": "0.0.0",
+  "description": "Simple date package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wviveiro/simple-date.git"
+  },
+  "keywords": [
+    "date",
+    "simple-date",
+    "javascript-date"
+  ],
+  "author": "Wellington Viveiro <wellington@asmex.digital>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wviveiro/simple-date/issues"
+  },
+  "homepage": "https://github.com/wviveiro/simple-date#readme"
+}
