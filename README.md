@@ -55,3 +55,24 @@ let date = sDate();
 
 return date.getDateObj();
 ```
+
+Verify if date is valid
+```javascript
+const sDate = require('simple-date');
+
+let date = sDate('notavaliddate');
+
+return date.isValid();
+```
+
+Get difference between two dates
+```javascript
+const sDate = require('simple-date');
+let date = sDate();
+
+/*
+* Returns {years, months, days, hours, minutes, seconds}
+* False if one of the days is invalid
+*/
+return date.diff('2019-05-23');
+```

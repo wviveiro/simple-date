@@ -73,7 +73,7 @@ const date = (strdate) => {
 
     const diff = (date_compare) => {
         const dt = date(date_compare);
-        if (!dt.isValid()) return false;
+        if (!dt.isValid() || !isValid()) return false;
 
         let milliseconds = dt.getDateObj() - dtObj;
         if (milliseconds < 0) milliseconds *= -1;
