@@ -7,11 +7,21 @@
 
 | Mask | Description | Example |
 |---|---|---|
-| DD | Day of the month | 01 to 31|
-| D | Day of the month | 1 to 31|
+| YYYY | Year | 2019...2030|
+| YY | Year | 19...30|
 | MM | Month of the year | 01 to 12|
 | M | Month of the year | 1 to 12|
-| YYYY | Year | 2019...2030, etc|
+| DDD | Day of the month | 001 to 031|
+| DD | Day of the month | 01 to 31|
+| D | Day of the month | 1 to 31|
+| HH | Hour | 00...23|
+| H | Hour | 0...23|
+| hh | Hour | 1...12|
+| a | Post or ante meridiem | am...pm |
+| mm | Minutes | 00...59 |
+| m | Minutes | 0...59 |
+| ss | seconds | 00...59 |
+| s | seconds | 0...59 |
 | N | Day of the week | 1 for Monday, 7 for Sunday|
 
 ```javascript
