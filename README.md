@@ -37,8 +37,19 @@ Load from a date string
 ```javascript
 const sDate = require('simple-date');
 
-// Date format has to be YYYY-MM-DD
+// Default format is YYYY-MM-DD
 let date = sDate('2019-05-17');
+
+
+return date.getFullDate(); // Returns YYYY-MM-DD
+```
+
+Get date object from other formats
+```javascript
+const sDate = require('simple-date');
+
+// Default format is YYYY-MM-DD
+let date = sDate('24/05/2019', 'DD/MM/YYYY');
 
 
 return date.getFullDate(); // Returns YYYY-MM-DD
