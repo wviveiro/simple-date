@@ -16,7 +16,7 @@ const date = (strdate, _format) => {
 
     if (!strdate) {
         const currdt = new Date();
-        strdate = `${currdt.getFullYear()}-${f(currdt.getMonth() + 1)}-${f(currdt.getDate())} ${f(currdt.getHours())}:${f(currdt.getMinutes())}:${f(currdt.getSeconds())}`;
+        strdate = `${currdt.getUTCFullYear()}-${f(currdt.getUTCMonth() + 1)}-${f(currdt.getUTCDate())} ${f(currdt.getUTCHours())}:${f(currdt.getUTCMinutes())}:${f(currdt.getUTCSeconds())}`;
         _format = 'YYYY-MM-DD HH:mm:ss';
     }
 
@@ -59,7 +59,7 @@ const date = (strdate, _format) => {
         if (!hour) hour = 0;
         if (!minute) minute = 0;
         if (!second) second = 0;
-        str += `T${f(hour)}:${f(minute)}:${f(second)}`;
+        str += `T${f(hour)}:${f(minute)}:${f(second)}Z`;
 
 
         return new Date(str);
@@ -81,17 +81,20 @@ const date = (strdate, _format) => {
     const getFullDate = () => {
         if (!isValid()) return false;
 
-        const newStrDate = `${dtObj.getFullYear()}-${f(dtObj.getMonth() + 1)}-${f(dtObj.getDate())}`;
+        const newStrDate = `${dtObj.getUTCFullYear()}-${f(dtObj.getUTCMonth() + 1)}-${f(dtObj.getUTCDate())}`;
+        
         return newStrDate;
     }
 
     const modify = (num, type) => {
         if (type.substr(0, 3) === 'day') {
-            dtObj.setDate(dtObj.getDate() + num);
+            
+            dtObj.setUTCDate(dtObj.getUTCDate() + num);
+            
         } else if (type.substr(0, 5) === 'month') {
-            dtObj.setMonth(dtObj.getMonth() + num);
+            dtObj.setUTCMonth(dtObj.getUTCMonth() + num);
         } else if (type.substr(0, 5) === 'year') {
-            dtObj.setFullYear(dtObj.getFullYear() + num);
+            dtObj.setUTCFullYear(dtObj.getUTCFullYear() + num);
         }
     }
 
@@ -101,24 +104,24 @@ const date = (strdate, _format) => {
         let auxformat = strformat;
 
         // Year Format
-        let year = `${dtObj.getFullYear()}`;
+        let year = `${dtObj.getUTCFullYear()}`;
         auxformat = auxformat.replace(/YYYY/gi, year);
         auxformat = auxformat.replace(/YY/gi, year.substr(year.length - 2));
 
         // Month format
-        let month = `${dtObj.getMonth() + 1}`;
+        let month = `${dtObj.getUTCMonth() + 1}`;
         auxformat = auxformat.replace(/MM/gi, f(month));
         auxformat = auxformat.replace(/M/gi, month);
 
 
         // Day Format
-        let day = `${dtObj.getDate()}`;
+        let day = `${dtObj.getUTCDate()}`;
         auxformat = auxformat.replace(/DDD/gi, f(day, 3));
         auxformat = auxformat.replace(/DD/gi, f(day));
         auxformat = auxformat.replace(/D/gi, day);
 
         // Hour format
-        let hours = +dtObj.getHours();
+        let hours = +dtObj.getUTCHours();
         auxformat = auxformat.replace(/HH/gi, f(hours));
         auxformat = auxformat.replace(/H/gi, hours);
         let not24 = (hours > 12) ? hours - 12 : (hours === 0) ? 12 : hours;
@@ -126,18 +129,20 @@ const date = (strdate, _format) => {
         auxformat = auxformat.replace(/h/gi, not24);
         auxformat = auxformat.replace(/a/gi, (hours > 12) ? 'pm' : 'am');
 
-        let minutes = +dtObj.getMinutes();
+        let minutes = +dtObj.getUTCMinutes();
         auxformat = auxformat.replace(/mm/gi, f(minutes));
         auxformat = auxformat.replace(/m/gi, minutes);
 
-        let seconds = +dtObj.getSeconds();
+        let seconds = +dtObj.getUTCSeconds();
         auxformat = auxformat.replace(/ss/gi, f(seconds));
         auxformat = auxformat.replace(/s/gi, seconds);
 
         // Week day format
-        let week = dtObj.getDay();
+        let week = dtObj.getUTCDay();
         if (+week === 0) week = 7;
         auxformat = auxformat.replace(/N/gi, week);
+
+        
 
         return auxformat;
     }
