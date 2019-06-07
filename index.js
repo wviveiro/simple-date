@@ -107,44 +107,45 @@ const date = (strdate, _format) => {
 
         // Year Format
         let year = `${dtObj.getUTCFullYear()}`;
-        auxformat = auxformat.replace(/YYYY/gi, year);
-        auxformat = auxformat.replace(/YY/gi, year.substr(year.length - 2));
+        auxformat = auxformat.replace(/YYYY/g, year);
+        auxformat = auxformat.replace(/YY/g, year.substr(year.length - 2));
 
-        // Month format
-        let month = `${dtObj.getUTCMonth() + 1}`;
-        auxformat = auxformat.replace(/MMMM/gi, Months[month]);
-        auxformat = auxformat.replace(/MMM/gi, Months[month].substr(0, 3));
-        auxformat = auxformat.replace(/MM/gi, f(month));
-        auxformat = auxformat.replace(/M/gi, month);
 
 
         // Day Format
         let day = `${dtObj.getUTCDate()}`;
-        auxformat = auxformat.replace(/DDD/gi, f(day, 3));
-        auxformat = auxformat.replace(/DD/gi, f(day));
-        auxformat = auxformat.replace(/D/gi, day);
+        auxformat = auxformat.replace(/DDD/g, f(day, 3));
+        auxformat = auxformat.replace(/DD/g, f(day));
+        auxformat = auxformat.replace(/D/g, day);
 
         // Hour format
         let hours = +dtObj.getUTCHours();
-        auxformat = auxformat.replace(/HH/gi, f(hours));
-        auxformat = auxformat.replace(/H/gi, hours);
+        auxformat = auxformat.replace(/HH/g, f(hours));
+        auxformat = auxformat.replace(/H/g, hours);
         let not24 = (hours > 12) ? hours - 12 : (hours === 0) ? 12 : hours;
-        auxformat = auxformat.replace(/hh/gi, f(not24));
-        auxformat = auxformat.replace(/h/gi, not24);
-        auxformat = auxformat.replace(/a/gi, (hours > 12) ? 'pm' : 'am');
+        auxformat = auxformat.replace(/hh/g, f(not24));
+        auxformat = auxformat.replace(/h/g, not24);
+        auxformat = auxformat.replace(/a/g, (hours > 12) ? 'pm' : 'am');
 
         let minutes = +dtObj.getUTCMinutes();
-        auxformat = auxformat.replace(/mm/gi, f(minutes));
-        auxformat = auxformat.replace(/m/gi, minutes);
+        auxformat = auxformat.replace(/mm/g, f(minutes));
+        auxformat = auxformat.replace(/m/g, minutes);
 
         let seconds = +dtObj.getUTCSeconds();
-        auxformat = auxformat.replace(/ss/gi, f(seconds));
-        auxformat = auxformat.replace(/s/gi, seconds);
+        auxformat = auxformat.replace(/ss/g, f(seconds));
+        auxformat = auxformat.replace(/s/g, seconds);
 
         // Week day format
         let week = dtObj.getUTCDay();
         if (+week === 0) week = 7;
         auxformat = auxformat.replace(/N/gi, week);
+        
+        // Month format
+        let month = `${dtObj.getUTCMonth() + 1}`;
+        auxformat = auxformat.replace(/MMMM/g, Months[month]);
+        auxformat = auxformat.replace(/MMM/g, Months[month].substr(0, 3));
+        auxformat = auxformat.replace(/MM/g, f(month));
+        auxformat = auxformat.replace(/M/g, month);
 
         
 
