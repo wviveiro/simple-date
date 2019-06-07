@@ -98,6 +98,8 @@ const date = (strdate, _format) => {
         }
     }
 
+    const Months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
     const format = (strformat) => {
         if (!isValid()) return false;
 
@@ -110,6 +112,8 @@ const date = (strdate, _format) => {
 
         // Month format
         let month = `${dtObj.getUTCMonth() + 1}`;
+        auxformat = auxformat.replace(/MMMM/gi, Months[month]);
+        auxformat = auxformat.replace(/MMM/gi, Months[month].substr(0, 3));
         auxformat = auxformat.replace(/MM/gi, f(month));
         auxformat = auxformat.replace(/M/gi, month);
 
